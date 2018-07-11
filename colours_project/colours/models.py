@@ -18,7 +18,7 @@ class Palette(models.Model):
 
 
 class Colour(models.Model):
-    palette = models.ForeignKey(Palette, on_delete=models.CASCADE)
+    palette = models.ForeignKey(Palette, on_delete=models.CASCADE, related_name="colours")
     name = models.CharField(max_length=128, unique=True)
     hex_code = models.CharField(max_length=7, unique=True)
     additional_info = models.TextField()
