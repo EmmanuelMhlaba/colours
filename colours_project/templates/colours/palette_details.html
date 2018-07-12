@@ -19,27 +19,33 @@
     </div>
 </div>
 <div class="row">
-    {% for colour in palette.colours.all %}
-        <div class="col s12 m3">
-            <div class="card sticky-action">
-                <div class="card-image waves-effect waves-block waves-light {{ colour|lower }}">
-                    {% for n in "012345" %}
-                        <br>
-                    {% endfor %}
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{ colour }}<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">Edit</a></p>
-                </div>
-                <div class="card-action">
-                    <a href="#">Delete</a>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{ colour }}<i class="material-icons right">close</i></span>
-                    <p>{{ colour.additional_info }}</p>
+    {% if palette.colours.all|length > 0 %}
+        {% for colour in palette.colours.all %}
+            <div class="col s12 m3">
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light {{ colour|lower }}">
+                        {% for n in "012345" %}
+                            <br>
+                        {% endfor %}
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ colour }}<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#">Edit</a></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Delete</a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ colour }}<i class="material-icons right">close</i></span>
+                        <p>{{ colour.additional_info }}</p>
+                    </div>
                 </div>
             </div>
+        {% endfor %}
+    {% else %}
+        <div>
+            <h3 class="grey-text center">No colours available.</h3>
         </div>
-    {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}
