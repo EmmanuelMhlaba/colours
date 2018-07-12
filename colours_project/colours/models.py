@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
+from django.core.validators import RegexValidator
 
 class Palette(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -10,8 +11,8 @@ class Palette(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    #def get_absolute_url(self):
-    #    return reverse('colours:details', args=[str(self.slug)])
+    def get_absolute_url(self):
+        return reverse('colours:palette_details', args=[str(self.slug)])
 
     def __str__(self):
         return self.name
@@ -20,7 +21,11 @@ class Palette(models.Model):
 class Colour(models.Model):
     palette = models.ForeignKey(Palette, on_delete=models.CASCADE, related_name="colours")
     name = models.CharField(max_length=128, unique=True)
-    hex_code = models.CharField(max_length=7, unique=True)
+    hex_code = models.CharField(
+        max_length=7,
+        unique=True,
+        verbose_name="hexidecimal code",
+    )
     additional_info = models.TextField()
     slug = models.SlugField(unique=True)
 

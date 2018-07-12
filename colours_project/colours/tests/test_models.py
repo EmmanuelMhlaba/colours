@@ -34,8 +34,8 @@ class PaletteModelTest(TestCase):
         p = Palette.objects.get(name="Red palette")
         self.assertEqual(p, self.p)
 
-    #def test_object_absolute_url(self):
-    #    self.assertEqual(self.p.get_absolute_url(), '/colours/palette/red-colour')
+    def test_object_absolute_url(self):
+        self.assertEqual(self.p.get_absolute_url(), '/colours/palette/red-palette/')
 
 class ColourModelTest(TestCase):
     @classmethod
@@ -73,7 +73,7 @@ class ColourModelTest(TestCase):
 
     def test_hex_code_label(self):
         label = self.c._meta.get_field('hex_code').verbose_name
-        self.assertEqual(label, 'hex code')
+        self.assertEqual(label, 'hexidecimal code')
 
     def test_hex_code_max_length(self):
         max_length = self.c._meta.get_field('hex_code').max_length

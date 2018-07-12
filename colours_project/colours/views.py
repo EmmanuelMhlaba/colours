@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 
 from colours.models import Palette
 
@@ -24,4 +24,13 @@ class IndexView(TemplateView):
         else:
             colour_palettes = tmp
         context["colour_palettes"] = colour_palettes
+        return context
+
+
+class PaletteDetailsView(DetailView):
+    model = Palette
+    template_name = 'colours/palette_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
