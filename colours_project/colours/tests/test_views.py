@@ -56,7 +56,7 @@ class PaletteDetailsViewTest(TestCase):
         self.p = Palette.objects.get(id=1)
 
     def test_url_exists_at_desired_location(self):
-        res = self.client.get('/colours/palette/red/')
+        res = self.client.get('/colours/palettes/red/')
         self.assertEqual(res.status_code, 200)
 
     def test_url_access_by_name(self):

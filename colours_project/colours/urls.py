@@ -6,5 +6,6 @@ app_name = 'colours'
 
 urlpatterns = [
     re_path(r'^$', views.IndexView.as_view(), name="index"),
-    re_path(r'^palette/(?P<slug>[\w\-]+)/$', views.PaletteDetailsView.as_view(), name="palette_details"),
+    re_path(r'^palettes/(?P<slug>[\w\-]+)/$', views.PaletteDetailsView.as_view(), name="palette_details"),
+    re_path(r'^palettes/$', views.PaletteListView.as_view(), name="palette_list"),
 ]

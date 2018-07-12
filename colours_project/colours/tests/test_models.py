@@ -35,7 +35,7 @@ class PaletteModelTest(TestCase):
         self.assertEqual(p, self.p)
 
     def test_object_absolute_url(self):
-        self.assertEqual(self.p.get_absolute_url(), '/colours/palette/red-palette/')
+        self.assertEqual(self.p.get_absolute_url(), '/colours/palettes/red-palette/')
 
 class ColourModelTest(TestCase):
     @classmethod

@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 
 from colours.models import Palette
 
@@ -31,6 +31,9 @@ class PaletteDetailsView(DetailView):
     model = Palette
     template_name = 'colours/palette_details.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+
+class PaletteListView(ListView):
+    model = Palette
+    paginate_by = 8
+    template_name = 'colours/palette_list.html'
+    context_object_name = 'palette_list'
