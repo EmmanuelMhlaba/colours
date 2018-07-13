@@ -24,12 +24,18 @@ class IndexView(TemplateView):
         else:
             colour_palettes = tmp
         context["colour_palettes"] = colour_palettes
+        context["active_section"] = 'colours_index'
         return context
 
 
 class PaletteDetailsView(DetailView):
     model = Palette
     template_name = 'colours/palette_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_section"] = 'colours_palette'
+        return context
 
 
 class PaletteListView(ListView):
@@ -38,3 +44,8 @@ class PaletteListView(ListView):
     template_name = 'colours/palette_list.html'
     context_object_name = 'palette_list'
     queryset = Palette.objects.order_by('name')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_section"] = 'colours_palette'
+        return context

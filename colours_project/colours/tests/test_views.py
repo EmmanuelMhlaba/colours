@@ -46,6 +46,12 @@ class IndexViewTest(TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(len(res.context['colour_palettes']), 6)
 
+    def test_active_section_present(self):
+        res = self.client.get(reverse('colours:index'))
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue('active_section' in res.context)
+        self.assertEqual(res.context['active_section'], 'colours_index')
+
 
 class PaletteDetailsViewTest(TestCase):
     @classmethod
@@ -76,6 +82,12 @@ class PaletteDetailsViewTest(TestCase):
         res = self.client.get(self.p.get_absolute_url())
         self.assertEqual(res.status_code, 200)
         self.assertContains(res, "No colours available.")
+
+    def test_active_section_present(self):
+        res = self.client.get(reverse('colours:palette_details', args=[self.p.slug]))
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue('active_section' in res.context)
+        self.assertEqual(res.context['active_section'], 'colours_palette')
 
 
 class PaletteListViewTest(TestCase):
@@ -123,3 +135,9 @@ class PaletteListViewTest(TestCase):
         self.assertTrue('is_paginated' in res.context)
         self.assertTrue(res.context['is_paginated'] == True)
         self.assertTrue(len(res.context['palette_list']) == 2)
+
+    def test_active_section_present(self):
+        res = self.client.get(reverse('colours:palette_list'))
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue('active_section' in res.context)
+        self.assertEqual(res.context['active_section'], 'colours_palette')

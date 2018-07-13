@@ -15,12 +15,14 @@
             <div class="nav-wrapper container">
                 <a href="{% url 'colours:index' %}" class="brand-logo grey-text">Colours</a>
                     <ul class="hide-on-med-and-down right">
-                        <li><a href="{% url 'colours:palette_list' %}" class="grey-text">Palettes</a></li>
-                        <li><a href="sass.html" class="white-text waves-effect grey waves-light btn">Sign in</a></li>
+                        {% if active_section == 'colours_palette' %}
+                            <li class="active"><a href="{% url 'colours:palette_list' %}" class="grey-text">Palettes</a></li>
+                        {% else %}
+                            <li><a href="{% url 'colours:palette_list' %}" class="grey-text">Palettes</a></li>
+                        {% endif %}
                     </ul>
                     <ul id="nav-mobile" class="sidenav">
                         <li><a href="{% url 'colours:palette_list' %}" class="grey-text">Palettes</a></li>
-                        <li><a href="sass.html" class="white-text waves-effect grey waves-light btn">Sign in</a></li>
                     </ul>
                 <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons grey-text">menu</i></a>
             </div>
