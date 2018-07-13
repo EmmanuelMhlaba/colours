@@ -37,3 +37,4 @@ class PaletteListView(ListView):
     paginate_by = 8
     template_name = 'colours/palette_list.html'
     context_object_name = 'palette_list'
+    queryset = Palette.objects.order_by('name')
